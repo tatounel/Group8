@@ -16,9 +16,11 @@ public class App
        
         
         for(int i = 0; i < objArr.length(); i++) {
+        	
         	String busNo = objArr.getJSONObject(i).getString("bus_no");
         	String parentNotified = objArr.getJSONObject(i).getString("has_contractor_notified_parents");
         	String schoolNotified = objArr.getJSONObject(i).getString("has_contractor_notified_schools");
+        	int  noOfStudents = objArr.getJSONObject(i).getInt("number_of_students_on_the_bus");
         	if(objArr.getJSONObject(i).has("how_long_delayed")) {
         		delay = objArr.getJSONObject(i).getString("how_long_delayed");
         		isDelayed = true;
@@ -33,6 +35,7 @@ public class App
         		System.out.println("Bus was not delayed");
         	}
         	
+        	System.out.println("Number of Students on the Bus: " + noOfStudents);
         	System.out.println("Parent Notification: " + parentNotified);
         	System.out.println("School Notification: " + schoolNotified + "\n");
         }
