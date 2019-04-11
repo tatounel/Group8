@@ -5,6 +5,7 @@ import org.json.JSONException;
 
 import javafx.*;
 import javafx.beans.property.*;
+import javafx.scene.image.Image;
 
 
 public class Data{
@@ -28,6 +29,7 @@ public class Data{
     private SimpleStringProperty studentAges;
     private SimpleStringProperty schoolYear;
     private SimpleStringProperty schoolsServiced;
+    private Image photo;
 
 /*constructor to load up parsed JSON data in the form of objects, before being 
 loaded into the columns of the JavaFX tableview*/
@@ -55,7 +57,6 @@ loaded into the columns of the JavaFX tableview*/
         this.schoolYear = new SimpleStringProperty(schoolYear);
         this.schoolsServiced = new SimpleStringProperty(schoolsServiced);
        
-
     }
 
 //getter methods defined so that the tableview could extract each property value into the respective columns.
@@ -211,6 +212,13 @@ loaded into the columns of the JavaFX tableview*/
 			this.schoolsServiced = new SimpleStringProperty(text);
 	    }
 	    
+	    public Image getImage() {
+			return photo;
+		}
+
+		public void setImage(Image newPicture) {
+			this.photo = newPicture;
+		}
 	    /*public static void main( String[] args ) throws Exception, JSONException
 	    {
 	    	boolean isDelayed = false;

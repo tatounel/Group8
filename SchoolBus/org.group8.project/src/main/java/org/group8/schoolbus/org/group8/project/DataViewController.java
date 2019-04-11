@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -62,6 +63,8 @@ public class DataViewController implements Initializable {
     private Label schoolYear;
 	@FXML
     private Label schoolsServiced;
+	@FXML
+	private Image photo;
 
 
 	/**
@@ -85,7 +88,7 @@ public class DataViewController implements Initializable {
 	public void changeScreenButtonPushed(ActionEvent event) throws IOException {
 		Parent tableViewParent = FXMLLoader.load(getClass().getResource("/ExampleOfTableView.fxml"));
 		Scene tableViewScene = new Scene(tableViewParent);
-
+		
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

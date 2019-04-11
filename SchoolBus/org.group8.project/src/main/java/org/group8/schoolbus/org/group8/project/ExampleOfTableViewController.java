@@ -269,9 +269,7 @@ public class ExampleOfTableViewController implements Initializable {
 	 */
 	public ObservableList<Data> getData() throws Exception {
 		ObservableList<Data> data = FXCollections.observableArrayList();
-		System.out.println(busData.getHTML("https://data.cityofnewyork.us/resource/fbkk-fqs7.json"));
     	String urlToRead = "https://data.cityofnewyork.us/resource/fbkk-fqs7.json";
-    	//System.out.println(busData.getHTML("https://data.cityofnewyork.us/resource/fbkk-fqs7.json").trim().charAt(0));
     	
         JSONArray objArr = new JSONArray(busData.getHTML(urlToRead));
 
@@ -281,10 +279,9 @@ public class ExampleOfTableViewController implements Initializable {
         		boro = objArr.getJSONObject(i).getString("boro");
         	}
         	catch (Exception e){
-        		System.out.println("No boro detected");
+        		boro = "No boro detected";
         	}
 
-        	System.out.println(boro);
         	data.add(new Data(
         			boro,
         			objArr.getJSONObject(i).getString("breakdown_or_running_late"),
