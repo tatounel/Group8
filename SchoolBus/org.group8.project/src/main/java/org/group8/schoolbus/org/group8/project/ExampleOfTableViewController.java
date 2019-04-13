@@ -2,8 +2,13 @@ package org.group8.schoolbus.org.group8.project;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import org.json.JSONArray;
@@ -26,6 +31,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -124,14 +130,6 @@ public class ExampleOfTableViewController implements Initializable {
 	@FXML
 	private Button detailedDataViewButton;
 
-	/**
-	 * This method will allow the user to double click on a cell and update the
-	 * first name of the Data
-	 */
-	/*public void changeFirstNameCellEvent(CellEditEvent edittedCell) {
-		Data DataSelected = tableView.getSelectionModel().getSelectedItem();
-		DataSelected.setFirstName(edittedCell.getNewValue().toString());
-	}*/
 
 	/**
 	 * This method will enable the detailed view button once a row in the table is
@@ -140,15 +138,6 @@ public class ExampleOfTableViewController implements Initializable {
 	public void userClickedOnTable() {
 		this.detailedDataViewButton.setDisable(false);
 	}
-
-	/**
-	 * This method will allow the user to double click on a cell and update the
-	 * last name of the Data
-	 */
-	/*public void changeLastNameCellEvent(CellEditEvent edittedCell) {
-		Data DataSelected = tableView.getSelectionModel().getSelectedItem();
-		DataSelected.setLastName(edittedCell.getNewValue().toString());
-	}*/
 
 	/**
 	 * When this method is called, it will change the Scene to a TableView example
@@ -203,6 +192,7 @@ public class ExampleOfTableViewController implements Initializable {
 		optNotifiedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("optNotified"));
 		parentsNotifiedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("parentsNotified"));
 		occurredOnColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("occurredOn"));
+		occurredOnColumn.setSortType(SortType.DESCENDING);
 		createdOnColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("createdOn"));
 		numOfStudentsColumn.setCellValueFactory(new PropertyValueFactory<Data, Integer>("numOfStudents"));
 		lastUpdatedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("lastUpdated"));
@@ -214,19 +204,14 @@ public class ExampleOfTableViewController implements Initializable {
 		schoolsServicedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("schoolsServiced"));
 
 		
-		// load dummy data
+		// load  data
 		try {
 			tableView.setItems(getData());
+			tableView.getSortOrder().setAll(occurredOnColumn);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		// Update the table to allow for the first and last name fields
-		// to be editable
-		/*tableView.setEditable(true);
-		firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());*/
 
 		// This will allow the table to select multiple rows at once
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -235,21 +220,7 @@ public class ExampleOfTableViewController implements Initializable {
 		//this.detailedDataViewButton.setDisable(true);
 	}
 
-	/**
-	 * This method will remove the selected row(s) from the table
-	 */
-	public void deleteButtonPushed() {
-		ObservableList<Data> selectedRows, allPeople;
-		allPeople = tableView.getItems();
-
-		// this gives us the rows that were selected
-		selectedRows = tableView.getSelectionModel().getSelectedItems();
-
-		// loop over the selected rows and remove the Data objects from the table
-		for (Data Data : selectedRows) {
-			allPeople.remove(Data);
-		}
-	}
+	
 
 	/**
 	 * This method will create a new Data object and add it to the table
@@ -265,6 +236,7 @@ public class ExampleOfTableViewController implements Initializable {
 
 	/**
 	 * This method will return an ObservableList of Data objects
+	 * It gets each column in the Dataset and adds the values to the observable list
 	 * @throws Exception 
 	 */
 	public ObservableList<Data> getData() throws Exception {
@@ -304,8 +276,8 @@ public class ExampleOfTableViewController implements Initializable {
         			objArr.getJSONObject(i).getString("schools_serviced")
         		));
         }
-		
-
+	
 		return data;
+		
 	}
 }
