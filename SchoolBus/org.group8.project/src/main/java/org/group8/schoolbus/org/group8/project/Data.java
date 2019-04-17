@@ -219,26 +219,7 @@ loaded into the columns of the JavaFX tableview*/
 		public void setImage(Image newPicture) {
 			this.photo = newPicture;
 		}
-	    /*public static void main( String[] args ) throws Exception, JSONException
-	    {
-	    	boolean isDelayed = false;
-	    	String delay = null;
-	        System.out.println(busData.getHTML("https://data.cityofnewyork.us/resource/fbkk-fqs7.json"));
-	    	String urlToRead = "https://data.cityofnewyork.us/resource/fbkk-fqs7.json";
-	    	System.out.println(busData.getHTML("https://data.cityofnewyork.us/resource/fbkk-fqs7.json").trim().charAt(0));
-	        JSONArray objArr = new JSONArray(busData.getHTML(urlToRead));
-	        
-	        for(int i = 0; i < objArr.length(); i++) {
-	        	
-	        	String busNo = objArr.getJSONObject(i).getString("bus_no");
-	        	String parentNotified = objArr.getJSONObject(i).getString("has_contractor_notified_parents");
-	        	String schoolNotified = objArr.getJSONObject(i).getString("has_contractor_notified_schools");
-	        	int  noOfStudents = objArr.getJSONObject(i).getInt("number_of_students_on_the_bus");
-	        	if(objArr.getJSONObject(i).has("how_long_delayed")) {
-	        		delay = objArr.getJSONObject(i).getString("how_long_delayed");
-	        		isDelayed = true;
-	        	}
-	    }*/
+	   
 }
 
 	

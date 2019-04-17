@@ -8,6 +8,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Test;
 
 
@@ -42,7 +44,11 @@ public class AppTest
     @Test
     public void url_assertions_examples() throws MalformedURLException
     {
-    	 assertThat(new URL("https://data.cityofnewyork.us/resource/fbkk-fqs7.jso")).hasParameter("m");
+    		String urlToRead = "https://data.cityofnewyork.us/resource/fbkk-fqs7.json";
+    	
+     //   JSONArray objArr = new JSONArray(busData.getHTML(urlToRead));;
+    		String expected = "{friends:[{id:123,name:\"Corby Page\"},{id:456,name:\"Carter Page\"}]}";
+    	//	JSONAssert.assertEquals(expected, objArr, false);
     }
     }
 
