@@ -318,6 +318,10 @@ public class ExampleOfTableViewController implements Initializable {
 				return true;
 			}
 			
+			else if (busData.getBusCompany().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
+				return true;
+			}
+			
 			return false;
 		}  
 				
