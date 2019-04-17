@@ -1,8 +1,15 @@
 package org.group8.schoolbus.org.group8.project;
 
-import junit.framework.Test;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Test;
+
 
 /**
  * Unit test for simple App.
@@ -23,11 +30,7 @@ public class AppTest
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
+  
     /**
      * Rigourous Test :-)
      */
@@ -35,4 +38,11 @@ public class AppTest
     {
         assertTrue( true );
     }
-}
+    
+    @Test
+    public void url_assertions_examples() throws MalformedURLException
+    {
+    	 assertThat(new URL("https://data.cityofnewyork.us/resource/fbkk-fqs7.jso")).hasParameter("m");
+    }
+    }
+

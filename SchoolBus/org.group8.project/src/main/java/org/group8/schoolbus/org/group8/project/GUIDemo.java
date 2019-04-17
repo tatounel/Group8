@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
  */
 public class GUIDemo extends Application {
 
+
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/ExampleOfTableView.fxml"));
@@ -23,11 +26,18 @@ public class GUIDemo extends Application {
 		stage.setScene(scene);
 		stage.setFullScreen(true);
 		VBox layout = new VBox(10);
+		
+		
+
+		
 		ScrollPane scroll = new ScrollPane(layout);
 		scroll.prefWidthProperty().bind(stage.widthProperty());
 		scroll.prefHeightProperty().bind(stage.heightProperty());
 		layout.prefWidthProperty().bind(stage.widthProperty());
 		layout.prefHeightProperty().bind(stage.heightProperty());
+		
+		
+	
 		stage.show();
 	}
 
