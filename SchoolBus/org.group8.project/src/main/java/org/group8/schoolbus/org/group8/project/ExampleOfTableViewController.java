@@ -53,6 +53,8 @@ public class ExampleOfTableViewController implements Initializable {
 	@FXML
 	private TableColumn<Data, String> informedOnColumn;
 	@FXML
+	private TableColumn<Data, String> lengthOfDelayColumn;
+	@FXML
 	private TableColumn<Data, String> schoolNotifiedColumn;
 	@FXML
 	private TableColumn<Data, String> optNotifiedColumn;
@@ -91,6 +93,8 @@ public class ExampleOfTableViewController implements Initializable {
     private TextField breakdownID;
 	@FXML
     private TextField informedOn;
+	@FXML
+    private TextField lengthOfDelay;
 	@FXML
     private TextField schoolNotified;
 	@FXML
@@ -182,6 +186,7 @@ public class ExampleOfTableViewController implements Initializable {
 		busNumColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("busNum"));
 		breakdownIDColumn.setCellValueFactory(new PropertyValueFactory<Data, Integer>("breakdownID"));
 		informedOnColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("informedOn"));
+		lengthOfDelayColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("lengthOfDelay"));
 		schoolNotifiedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("schoolNotified"));
 		optNotifiedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("optNotified"));
 		parentsNotifiedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("parentsNotified"));
@@ -248,10 +253,16 @@ public class ExampleOfTableViewController implements Initializable {
         		boro = objArr.getJSONObject(i).getString("boro");
         	}
         	catch (Exception e){
-        		boro = "No boro detected";
+        		boro = "None inputted";
         	}
         	
-        
+        	String lengthOfDelay = "";
+        	try {
+        		lengthOfDelay = objArr.getJSONObject(i).getString("how_long_delayed");
+        	}
+        	catch (Exception e){
+        		lengthOfDelay = "None inputted";
+        	}
 
         	data.add(new Data(
         			boro,
@@ -260,6 +271,7 @@ public class ExampleOfTableViewController implements Initializable {
         			objArr.getJSONObject(i).getString("bus_no"),
         			objArr.getJSONObject(i).getInt("busbreakdown_id"),
         			objArr.getJSONObject(i).getString("informed_on"),
+        			lengthOfDelay,
         			objArr.getJSONObject(i).getString("has_contractor_notified_schools"),
         			objArr.getJSONObject(i).getString("have_you_alerted_opt"),
         			objArr.getJSONObject(i).getString("has_contractor_notified_parents"),
@@ -323,6 +335,7 @@ public class ExampleOfTableViewController implements Initializable {
 			}
 			
 			return false;
+			
 		}  
 				
 		

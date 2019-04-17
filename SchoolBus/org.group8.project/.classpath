@@ -23,9 +23,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/annakomarovska/Desktop/java-json.jar"/>
-	<classpathentry kind="lib" path="/Users/annakomarovska/Desktop/json-simple-2.1.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="/Users/annakomarovska/Desktop/assertj-core-3.8.0.jar"/>
+	<classpathentry kind="lib" path="src/main/java/json-20180813.jar"/>
+	<classpathentry kind="lib" path="src/main/java/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="src/main/java/assertj-core-3.8.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

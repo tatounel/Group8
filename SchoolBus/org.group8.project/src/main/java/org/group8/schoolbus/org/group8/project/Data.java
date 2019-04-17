@@ -16,6 +16,7 @@ public class Data{
     private SimpleStringProperty busNum;
     private SimpleIntegerProperty breakdownID;
     private SimpleStringProperty informedOn;
+    private SimpleStringProperty lengthOfDelay;
     private SimpleStringProperty schoolNotified;
     private SimpleStringProperty optNotified;
     private SimpleStringProperty parentsNotified;
@@ -33,7 +34,7 @@ public class Data{
 
 /*constructor to load up parsed JSON data in the form of objects, before being 
 loaded into the columns of the JavaFX tableview*/
-    Data(String borough,String typeOfDelay,String busCompany,String busNum,int breakdownID,String informedOn,String schoolNotified,
+    Data(String borough, String typeOfDelay, String busCompany, String busNum, int breakdownID,String informedOn, String lengthOfDelay, String schoolNotified,
     		String optNotified, String parentsNotified, String occurredOn, String createdOn, int numOfStudents, String lastUpdated,
     		String reason, String routeNum, String runType, String studentAges, String schoolYear, String schoolsServiced){
     
@@ -43,6 +44,7 @@ loaded into the columns of the JavaFX tableview*/
         this.busNum = new SimpleStringProperty(busNum);
         this.breakdownID = new SimpleIntegerProperty(breakdownID);
         this.informedOn = new SimpleStringProperty(informedOn);
+        this.lengthOfDelay = new SimpleStringProperty(lengthOfDelay);
         this.schoolNotified = new SimpleStringProperty(schoolNotified);
         this.optNotified = new SimpleStringProperty(optNotified);
         this.parentsNotified = new SimpleStringProperty(parentsNotified);
@@ -92,7 +94,7 @@ loaded into the columns of the JavaFX tableview*/
 			this.busNum = new SimpleStringProperty(text);
 		}
 	    
-	    public int getBreakdownID() {
+	    public Integer getBreakdownID() {
 	        return breakdownID.get();
 	    }
 	
@@ -106,6 +108,14 @@ loaded into the columns of the JavaFX tableview*/
 	
 	    public void setInformedOn(String text) {
 			this.informedOn = new SimpleStringProperty(text);
+	    }
+	    
+	    public String getLengthOfDelay() {
+	    	return lengthOfDelay.get();
+	    }
+	    
+	    public void setLengthOfDelay(String text) {
+	    	this.lengthOfDelay = new SimpleStringProperty(text);
 	    }
 	    
 	    public String getSchoolNotified() {
@@ -148,7 +158,7 @@ loaded into the columns of the JavaFX tableview*/
 			this.createdOn = new SimpleStringProperty(text);
 	    }
 	    
-	    public int getNumOfStudents() {
+	    public Integer getNumOfStudents() {
 	        return numOfStudents.get();
 	    } 
 	    
