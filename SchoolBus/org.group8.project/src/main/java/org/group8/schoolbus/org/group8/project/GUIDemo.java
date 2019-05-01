@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -19,7 +20,7 @@ public class GUIDemo extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/ExampleOfTableView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/BusWhereLogin.fxml"));
 
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Germania+One");
@@ -29,8 +30,8 @@ public class GUIDemo extends Application {
 		
 		
 
-		
 		ScrollPane scroll = new ScrollPane(layout);
+		
 		scroll.prefWidthProperty().bind(stage.widthProperty());
 		scroll.prefHeightProperty().bind(stage.heightProperty());
 		layout.prefWidthProperty().bind(stage.widthProperty());
