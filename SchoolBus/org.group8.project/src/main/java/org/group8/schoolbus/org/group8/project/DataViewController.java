@@ -68,21 +68,6 @@ public class DataViewController implements Initializable {
 
 
 	/**
-	 * This method accepts a person to initialize the view
-	 * 
-	 * @param person
-	 */
-	/*public void initData(Person person) {
-		selectedPerson = person;
-		
-		firstNameLabel.setText(selectedPerson.getFirstName());
-		lastNameLabel.setText(selectedPerson.getLastName());
-		birthdayLabel.setText(selectedPerson.getBirthday().toString());
-		ageLabel.setText(Integer.toString(selectedPerson.getAge()));
-		photo.setImage(selectedPerson.getImage());
-	}*/
-
-	/**
 	 * When this method is called, it will change the Scene to a TableView example
 	 */
 	public void changeScreenButtonPushed(ActionEvent event) throws IOException {

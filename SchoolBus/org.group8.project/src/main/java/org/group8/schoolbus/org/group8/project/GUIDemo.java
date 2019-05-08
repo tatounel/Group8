@@ -20,7 +20,7 @@ public class GUIDemo extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/BusWhereLogin.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/ExampleOfTableView.fxml"));
 
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Germania+One");
