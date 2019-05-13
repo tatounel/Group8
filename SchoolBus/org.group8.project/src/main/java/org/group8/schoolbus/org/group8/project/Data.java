@@ -28,8 +28,10 @@ public class Data{
     private SimpleStringProperty schoolsServiced;
     private Image photo;
 
-/*constructor to load up parsed JSON data in the form of objects, before being 
-loaded into the columns of the JavaFX tableview*/
+/**
+ * constructor to load up parsed JSON data in the form of objects, before being 
+ * loaded into the columns of the JavaFX tableview
+ * */
     Data(String borough, String typeOfDelay, String busCompany, String busNum, int breakdownID,String informedOn, String lengthOfDelay, String schoolNotified,
     		String optNotified, String parentsNotified, String occurredOn, String createdOn, int numOfStudents, String lastUpdated,
     		String reason, String routeNum, String runType, String studentAges, String schoolYear, String schoolsServiced){
@@ -57,11 +59,10 @@ loaded into the columns of the JavaFX tableview*/
        
     }
 
-//getter methods defined so that the tableview could extract each property value into the respective columns.
+    	//getter methods defined so that the tableview could extract each property value into the respective columns.
 	   
-   
     		
-    		public String getBorough() {
+    	public String getBorough() {
 	        return borough.get();
 	    }
 	

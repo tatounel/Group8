@@ -1,9 +1,8 @@
 
-package  org.group8.schoolbus.org.group8.project;
+package org.group8.schoolbus.org.group8.project;
 
-//import com.mysql.cj.jdbc.Connection;
-//import com.mysql.jdbc.PreparedStatement;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +36,7 @@ import org.group8.schoolbus.org.group8.project.ConnectionUtil;
  *
  */
 public class SignupController implements Initializable {
+	@SuppressWarnings("rawtypes")
 	@FXML
     private ChoiceBox typeBox;
     @FXML
@@ -57,9 +57,14 @@ public class SignupController implements Initializable {
     Label lblStatus;
 
     private ObservableList<String> choiceBoxData = FXCollections.observableArrayList();
-    private ObservableList<ObservableList> data;
-    String SQL = "SELECT * from buswhere_users";
 	
+    //variables for connecting to database
+    PreparedStatement preparedStatement;
+    Connection connection;
+    ResultSet resultSet = null;
+
+    
+    //selections for choiceBox
 	public ObservableList<String> getData(){
 		
 		choiceBoxData.add(("Parent"));
@@ -68,13 +73,11 @@ public class SignupController implements Initializable {
 		
 		return choiceBoxData; 
 	}
-
+    
+   
     /**
      * Initializes the controller class.
      */
-    PreparedStatement preparedStatement;
-    Connection connection;
-
     public SignupController() {
         connection = (Connection) ConnectionUtil.conDB();
     }
@@ -82,20 +85,29 @@ public class SignupController implements Initializable {
     @SuppressWarnings("unchecked")
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //adds items to choicebox
     	typeBox.setValue("Parent");
 		typeBox.setItems(getData());
         
     }
 
+    
+    /**
+     * called when signup button is pressed
+     * checks if text and password fields are empty and calls saveData() if all are filled
+     * switches to table scene when done
+     * @param event
+     * @throws IOException
+     */
     @FXML
-   private void HandleEvents(ActionEvent event) throws IOException {
-        //check if not empty
+    private void HandleEvents(ActionEvent event) throws IOException {
+        //
         if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || userName.getText().isEmpty() || password.getText().isEmpty() || verifyPassword.getText().isEmpty()) {
             lblStatus.setTextFill(Color.TOMATO);
             lblStatus.setText("Enter all details");
-        } else {
-            //saveData();
+        } 
+        
+        else if(saveData() == "Success"){
             changeScreentoTable(event);
         }
 
@@ -108,25 +120,45 @@ public class SignupController implements Initializable {
         password.clear();
         verifyPassword.clear();
     }
-
-     private String saveData() {
+    
+    /**
+     * saves inputs from text and password fields as new user in database
+     * @return String success if values where added to database and exception if error occurred.
+     */
+    private String saveData() {
 
        try {
+            String sql = "SELECT * FROM buswhere_users Where userName = ?";
+
             String st = "INSERT INTO buswhere_users ( firstName, lastName, userName, password) VALUES (?,?,?,?)";
-            preparedStatement = (PreparedStatement) connection.prepareStatement(st);
-            preparedStatement.setString(1, firstName.getText());
-            preparedStatement.setString(2, lastName.getText());
-            preparedStatement.setString(3, userName.getText());
-            preparedStatement.setString(4, password.getText());
+            
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userName.getText());
+            resultSet = preparedStatement.executeQuery();
+            
+            //first checks if username is already in database
+            if (resultSet.next()) {
+            	lblStatus.setTextFill(Color.TOMATO);
+                lblStatus.setText("That username has already been taken.");
+                return "";
+            }
+            else {
+            	preparedStatement = (PreparedStatement) connection.prepareStatement(st);
+                preparedStatement.setString(1, firstName.getText());
+                preparedStatement.setString(2, lastName.getText());
+                preparedStatement.setString(3, userName.getText());
+                preparedStatement.setString(4, password.getText());
 
-            preparedStatement.executeUpdate();
-            lblStatus.setTextFill(Color.GREEN);
-            lblStatus.setText("Account Created!");
+                preparedStatement.executeUpdate();
+                lblStatus.setTextFill(Color.GREEN);
+                lblStatus.setText("Account Created!");
 
-          
-            clearFields();
-            return "Success";
+              
+                clearFields();
+                return "Success";
 
+            }
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             lblStatus.setTextFill(Color.TOMATO);
@@ -135,7 +167,6 @@ public class SignupController implements Initializable {
         }
     }
 
-    
 
     /**
 	 * When this method is called, it will change the Scene to the Login scene
@@ -167,7 +198,7 @@ public class SignupController implements Initializable {
 	}
    
 	/**
-	 * When this method is called, it will change the Scene to the Login scene
+	 * When this method is called, it will change the Scene to the Table scene
 	 */
 	public void changeScreentoTable(ActionEvent event) throws IOException {
 		

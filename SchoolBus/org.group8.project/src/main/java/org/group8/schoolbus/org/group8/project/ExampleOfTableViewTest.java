@@ -57,10 +57,10 @@ public class ExampleOfTableViewTest extends ApplicationTest{
 		
 		  try {
 			testUrl = new JSONArray(busData.getHTML(dataUrl));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		  } 
+		  catch (Exception e) {
 			e.printStackTrace();
-		};
+		  }
 		  assertEquals("https://data.cityofnewyork.us/resource/fbkk-fqs7.json", testUrl);
 	  }
 }
