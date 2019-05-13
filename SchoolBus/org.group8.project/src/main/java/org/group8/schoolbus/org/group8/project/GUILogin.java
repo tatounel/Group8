@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -12,7 +14,7 @@ import javafx.stage.Stage;
  *
  * @author
  */
-public class GUIDemo extends Application {
+public class GUILogin extends Application {
 
 
 	
@@ -24,16 +26,13 @@ public class GUIDemo extends Application {
 		scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Germania+One");
 		stage.setScene(scene);
 		stage.setFullScreen(true);
-		VBox layout = new VBox(10);
 		
+		HBox layout = new HBox(10);
 		
-
-		ScrollPane scroll = new ScrollPane(layout);
-		
-		scroll.prefWidthProperty().bind(stage.widthProperty());
-		scroll.prefHeightProperty().bind(stage.heightProperty());
 		layout.prefWidthProperty().bind(stage.widthProperty());
 		layout.prefHeightProperty().bind(stage.heightProperty());
+		
+
 		
 		
 	

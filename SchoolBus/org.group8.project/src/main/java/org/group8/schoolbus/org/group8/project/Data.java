@@ -1,9 +1,5 @@
 package org.group8.schoolbus.org.group8.project;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import javafx.*;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 

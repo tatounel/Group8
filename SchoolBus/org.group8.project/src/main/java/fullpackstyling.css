@@ -1,0 +1,33 @@
+.button
+{
+-fx-background-color : #FFF;
+-fx-border-color: #33ccff;
+-fx-text-fill:  #0C3988;
+}
+.button:hover
+{
+-fx-background-color : #33ccff ;
+-fx-text-fill:  #FFF;
+}
+.button:pressed
+{
+-fx-background-color : #33ccff ;
+-fx-text-fill: #FFF;
+}
+
+.button2
+{
+-fx-background-color :  #FFF;
+-fx-border-color: #FFF;
+-fx-text-fill:  #FFF;
+}
+.button2:hover
+{
+-fx-background-color : #33ccff ;
+-fx-text-fill:   #FFF;
+}
+.button2:pressed
+{
+-fx-background-color : #33ccff ;
+-fx-text-fill: #FFF;
+}
