@@ -1,6 +1,5 @@
 package org.group8.schoolbus.org.group8.project;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -14,13 +13,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -28,7 +22,6 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -82,6 +75,7 @@ public class ExampleOfTableViewController implements Initializable {
 	private TableColumn<Data, String> schoolsServicedColumn;
 	
 	// These instance variables are used to create new Data objects
+	@SuppressWarnings("unused")
 	private TextField borough;
 	@FXML
     private TextField typeOfDelay;
@@ -132,31 +126,7 @@ public class ExampleOfTableViewController implements Initializable {
 	private ObservableList<Data> data = FXCollections.observableArrayList();
     private ObservableList<Data> filteredData = FXCollections.observableArrayList();
 	
-    /**
-	 * This method will enable the detailed view button once a row in the table is
-	 * selected
-	 */
-	public void userClickedOnTable() {
-		this.detailedDataViewButton.setDisable(false);
-	}
-
-	/**
-	 * When this method is called, it will change the Scene to a TableView example
-	 */
-	public void changeScreenButtonPushed(ActionEvent event) throws IOException {
-		Parent tableViewParent = FXMLLoader.load(getClass().getResource("/FXMLDocument.fxml"));
-		Scene tableViewScene = new Scene(tableViewParent);
-
-		// This line gets the Stage information
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-		window.setScene(tableViewScene);
-		window.show();
-	}
 	
-	/**
-	 * The constructor
-	 */
 	
 	public void SchoolBusController() {
 		
@@ -203,33 +173,31 @@ public class ExampleOfTableViewController implements Initializable {
 		schoolsServicedColumn.setCellValueFactory(new PropertyValueFactory<Data, String>("schoolsServiced"));
 
 		
-		// load  data
+		// load data into table and sort it by dates in occurredOn column
 		try {
 			tableView.setItems(getData1());
 			tableView.getSortOrder().setAll(occurredOnColumn);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		// This will allow the table to select multiple rows at once
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-	
 		
+		updateFilteredData();
 		//Add filtered data to the table 
 		tableView.setItems(filteredData);
 	 	
-		//Listen for text changes
+		//Listen for text changes in search bar
 	 	filterField.textProperty().addListener( new ChangeListener<String>(){
 	 		
 	 		@Override
 	 		public void changed(ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
-                
-                updateFilteredData();
-            }
-	});
+	 							String oldValue, String newValue) {
+	            
+	            updateFilteredData();
+	 		}
+	 	});
 		
 }
 
@@ -243,10 +211,11 @@ public class ExampleOfTableViewController implements Initializable {
 	 */
 	public ObservableList<Data> getData1() throws Exception {
 		
-    		String urlToRead = "https://data.cityofnewyork.us/resource/fbkk-fqs7.json";
+    	String urlToRead = "https://data.cityofnewyork.us/resource/fbkk-fqs7.json";
     	
         JSONArray objArr = new JSONArray(busData.getHTML(urlToRead));
 
+        //checks for any null values in borough and lengthOfDelay so loading table doesn't crash app
         for(int i = 0; i < objArr.length(); i++) {
         	String boro = "";
         	try {
@@ -263,7 +232,8 @@ public class ExampleOfTableViewController implements Initializable {
         	catch (Exception e){
         		lengthOfDelay = "None inputted";
         	}
-
+        	
+        	
         	data.add(new Data(
         			boro,
         			objArr.getJSONObject(i).getString("breakdown_or_running_late"),
@@ -293,9 +263,9 @@ public class ExampleOfTableViewController implements Initializable {
         
 	}
 	
-	/*
-	 * Updates the filteredData 
-	 */
+		/**
+		 * Updates the filteredData list
+		 */
 		private void updateFilteredData() {
 				filteredData.clear();
 				
@@ -309,7 +279,7 @@ public class ExampleOfTableViewController implements Initializable {
 			}
 
 		
-		/*
+		/**
 		 * Returns true if the busData matches the filter
 		 * Works for both Upper/Lower case
 		 */
@@ -338,7 +308,7 @@ public class ExampleOfTableViewController implements Initializable {
 			
 		}  
 				
-		
+		//makes sure table is still sorted by most recent date after filtering data
 		private void reapplyTableSortOrder() {			
 				ArrayList<TableColumn<Data, ?>> sortOrder = new ArrayList<>(tableView.getSortOrder());
 				tableView.getSortOrder().clear();

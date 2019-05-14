@@ -10,15 +10,19 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author
+ * @author Tania
+ * when this file is run, it will open javafx app
  */
 public class GUIDemo extends Application {
 
 
 	
 	@Override
+	/**
+	 * gets login fxml and initializes scene
+	 */
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/Signup.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
 
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Germania+One");

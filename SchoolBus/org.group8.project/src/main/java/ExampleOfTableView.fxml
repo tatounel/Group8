@@ -27,7 +27,7 @@
                         <Font name="Arial" size="17.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="396.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="300.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@busimage.png" />
                      </image>
