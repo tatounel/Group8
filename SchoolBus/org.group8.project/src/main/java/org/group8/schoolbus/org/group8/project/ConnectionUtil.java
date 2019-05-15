@@ -29,9 +29,9 @@ public class ConnectionUtil {
     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql?user=root&password=tanianelzy&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=EST");
-            //stmt = con.createStatement();
-            //stmt.executeUpdate(BUSWHERE_USERS);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql?user=root&password=anka1998&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=EST");
+        //    stmt = con.createStatement();
+        //    stmt.executeUpdate(BUSWHERE_USERS);
             return con;
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println("ConnectionUtil : "+ex.getMessage());
