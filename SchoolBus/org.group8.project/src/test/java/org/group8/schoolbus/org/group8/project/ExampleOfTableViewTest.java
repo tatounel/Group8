@@ -3,10 +3,8 @@ package org.group8.schoolbus.org.group8.project;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.json.JSONArray;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
@@ -58,6 +56,7 @@ public class ExampleOfTableViewTest extends ApplicationTest{
 
 	  public void start (Stage stage) throws Exception {
 	    Parent mainNode = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+	    stage.setMaximized(true);
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();

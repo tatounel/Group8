@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * FXML Controller class
+ * TableView Controller class
  *
  * @author
  */
@@ -280,7 +280,7 @@ public class ExampleOfTableViewController implements Initializable {
 
 		
 		/**
-		 * Returns true if the busData matches the filter
+		 * Returns true if the busData matches the filter/search input
 		 * Works for both Upper/Lower case
 		 */
 		private boolean matchesFilter(Data busData) {

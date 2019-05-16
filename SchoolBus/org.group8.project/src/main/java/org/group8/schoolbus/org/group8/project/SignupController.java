@@ -126,45 +126,50 @@ public class SignupController implements Initializable {
      * @return String success if values where added to database and exception if error occurred.
      */
     private String saveData() {
-
-       try {
-            String sql = "SELECT * FROM buswhere_users Where userName = ?";
-
-            String st = "INSERT INTO buswhere_users ( firstName, lastName, userName, password) VALUES (?,?,?,?)";
-            
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, userName.getText());
-            resultSet = preparedStatement.executeQuery();
-            
-            //first checks if username is already in database
-            if (resultSet.next()) {
-            	lblStatus.setTextFill(Color.TOMATO);
-                lblStatus.setText("That username has already been taken.");
-                return "";
-            }
-            else {
-            	preparedStatement = (PreparedStatement) connection.prepareStatement(st);
-                preparedStatement.setString(1, firstName.getText());
-                preparedStatement.setString(2, lastName.getText());
-                preparedStatement.setString(3, userName.getText());
-                preparedStatement.setString(4, password.getText());
-
-                preparedStatement.executeUpdate();
-                lblStatus.setTextFill(Color.GREEN);
-                lblStatus.setText("Account Created!");
-
-              
-                clearFields();
-                return "Success";
-
-            }
-            
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            lblStatus.setTextFill(Color.TOMATO);
-            lblStatus.setText(ex.getMessage());
-            return "Exception";
-        }
+    	if(password.getText().equals(verifyPassword.getText())){
+	       try {
+	            String sql = "SELECT * FROM buswhere_users Where userName = ?";
+	
+	            String st = "INSERT INTO buswhere_users ( firstName, lastName, userName, password) VALUES (?,?,?,?)";
+	            
+	            preparedStatement = connection.prepareStatement(sql);
+	            preparedStatement.setString(1, userName.getText());
+	            resultSet = preparedStatement.executeQuery();
+	            
+	            //first checks if username is already in database
+	            if (resultSet.next()) {
+	            	lblStatus.setTextFill(Color.TOMATO);
+	                lblStatus.setText("That username has already been taken.");
+	                return "";
+	            }
+	            else {
+	            	preparedStatement = (PreparedStatement) connection.prepareStatement(st);
+	                preparedStatement.setString(1, firstName.getText());
+	                preparedStatement.setString(2, lastName.getText());
+	                preparedStatement.setString(3, userName.getText());
+	                preparedStatement.setString(4, password.getText());
+	
+	                preparedStatement.executeUpdate();
+	                lblStatus.setTextFill(Color.GREEN);
+	                lblStatus.setText("Account Created!");
+	
+	              
+	                clearFields();
+	                return "Success";
+	
+	            }
+	            
+	        } catch (SQLException ex) {
+	            System.out.println(ex.getMessage());
+	            lblStatus.setTextFill(Color.TOMATO);
+	            lblStatus.setText(ex.getMessage());
+	            return "Exception";
+	        }
+    	}
+    	else {
+        	lblStatus.setText("Password fields do not match.");
+        	return "Passwords don't match";
+    	}
     }
 
 

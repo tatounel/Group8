@@ -5,14 +5,13 @@ import java.net.URL;
 
 
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
 
 /**
- * Unit test for simple App.
+ * Unit test for simple App
  */
 public class AppTest 
     extends TestCase
@@ -27,12 +26,11 @@ public class AppTest
         super( testName );
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
+   
   
     /**
-     * Rigourous Test :-)
+     * Rigorous Test :-)
+     * @return the suite of tests being tested
      */
     public void testApp()
     {

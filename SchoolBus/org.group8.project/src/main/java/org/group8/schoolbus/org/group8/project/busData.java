@@ -7,7 +7,12 @@ import java.net.URL;
 
 public class busData {
 
-	
+	/**
+	 * Json uses this function to get connection with API
+	 * @param urlToRead
+	 * @return String
+	 * @throws Exception
+	 */
 	public static String getHTML(String urlToRead) throws Exception {
 	      StringBuilder result = new StringBuilder();
 	      URL url = new URL(urlToRead);

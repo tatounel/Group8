@@ -23,7 +23,7 @@ public class GUIDemo extends Application {
 	 */
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
-
+		
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Germania+One");
 		stage.setScene(scene);
